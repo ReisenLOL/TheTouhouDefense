@@ -15,12 +15,18 @@ public class Enemy : Unit
     {
         player = FindFirstObjectByType<PlayerController>();
         centralBuilding = FindFirstObjectByType<CentralBuilding>();
+        target = centralBuilding.transform;
+    }
+
+    private void Awake()
+    {
+        RoundManager.instance.activeEnemyCount++;
     }
 
     void Update()
     {
         //this will be replaced for navmeshes later
-        if (Vector3.Distance(player.transform.position, transform.position) <
+        if (player.gameObject.activeSelf && Vector3.Distance(player.transform.position, transform.position) <
             Vector3.Distance(centralBuilding.transform.position, transform.position))
         {
             target = player.transform;
@@ -51,5 +57,10 @@ public class Enemy : Unit
     {
         base.OnKillEffects();
         ResourceManager.instance.AddPower(powerDropped);
+    }
+
+    private void OnDestroy()
+    {
+        RoundManager.instance.activeEnemyCount--;
     }
 }

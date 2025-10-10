@@ -1,21 +1,65 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class RoundManager : MonoBehaviour
 {
-    public Transform[] spawnPoints;
-    public Enemy enemyToSpawn; // we are gonna like, do thee most basic spawn one every few seconds for the first prototype.
-    public float timeUntilEnemySpawn;
-    public float currentTime;
-
-    private void Update()
+    #region Statication
+    public static RoundManager instance;
+    private void Awake()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime > timeUntilEnemySpawn)
+        if (instance != null && instance != this)
         {
-            Enemy newEnemy = Instantiate(enemyToSpawn, spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, enemyToSpawn.transform.rotation);
-            currentTime -= timeUntilEnemySpawn;
+            Destroy(gameObject);
         }
+        instance = this;
     }
+    #endregion
+
+    public int activeEnemyCount;
+    public Transform[] spawnPoints;
+    public Transform enemiesFolder;
+    public float timeBetweenEnemySpawns;
+    public int currentRound;
+    [System.Serializable]
+    public class RoundData
+    {
+        public WaveData[] waves;
+    }
+    [System.Serializable]
+    public class WaveData
+    {
+        public Enemy enemyToSpawn;
+        public int amountToSpawn;
+    }
+
+    public RoundData[] rounds;
+    [ContextMenu("Spawn Round")]
+    public void SpawnNextRound()
+    {
+        StartCoroutine(SpawnRound(rounds[currentRound]));
+    }
+    IEnumerator SpawnRound(RoundData round)
+    {
+        int currentWave = 0;
+        while (currentWave < round.waves.Length)
+        {
+            int currentEnemyNumber = 0;
+            while (currentEnemyNumber < round.waves[currentWave].amountToSpawn)
+            {
+                Enemy newEnemy = Instantiate(round.waves[currentWave].enemyToSpawn, enemiesFolder);
+                newEnemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+                currentEnemyNumber++;
+                yield return new WaitForSeconds(timeBetweenEnemySpawns);
+            }
+            while (activeEnemyCount > 0)
+            {
+                yield return null;
+            }
+            currentWave++;
+        }
+        currentRound++;
+        yield break;
+    } 
 }

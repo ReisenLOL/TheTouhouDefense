@@ -3,12 +3,19 @@ using UnityEngine;
 
 public class PlayerController : Unit
 {
-    private Vector2 moveDirection;
+    [Header("Primary Attack")]
     public Projectile primaryProjectile;
     public float fireRate;
     private float fireRateTimer;
+    [Header("Lives")]
+    public int lives;
+    public float respawnDelay;
+    public bool isRespawning;
+    [Header("CACHE")]
+    private Vector2 moveDirection;
     public Camera cam;
     private Vector3 mouseWorldPos;
+    public CentralBuilding centralBuilding;
     
     void Update()
     {
@@ -18,12 +25,14 @@ public class PlayerController : Unit
     }
     protected override void OnKillEffects()
     {
-        
+        gameObject.SetActive(false);
+        lives--;
+        isRespawning = true;
     }
     public void HandlePrimaryAttack()
     {
         fireRateTimer += Time.deltaTime;
-        if (Input.GetMouseButton(0) && fireRateTimer > fireRate)
+        if (Input.GetMouseButton(0) && fireRateTimer > fireRate && canAttack)
         {
             Projectile newProjectile = Instantiate(primaryProjectile, transform.position, primaryProjectile.transform.rotation);
             newProjectile.tag = "Friendly";
@@ -33,6 +42,9 @@ public class PlayerController : Unit
     }
     private void FixedUpdate()
     {
-        rb.linearVelocity = moveDirection * speed;
+        if (canMove)
+        {
+            rb.linearVelocity = moveDirection * speed;
+        }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
@@ -14,10 +16,17 @@ public class ResourceManager : MonoBehaviour
     }
     #endregion
     public float powerStored;
+    public TextMeshProUGUI powerText;
+
+    private void Start()
+    {
+        UpdatePowerUI();
+    }
 
     public void AddPower(float power)
     {
         powerStored += power;
+        UpdatePowerUI();
     }
     public bool RemovePower(float power)
     {
@@ -27,6 +36,11 @@ public class ResourceManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void UpdatePowerUI()
+    {
+        powerText.text = "Power: " + powerStored;
     }
 }
 
