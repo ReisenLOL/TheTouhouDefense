@@ -7,6 +7,9 @@ public class PlayerController : Unit
     public Projectile primaryProjectile;
     public float fireRate;
     private float fireRateTimer;
+
+    [Header("Stats")] 
+    public float baseDamage;
     [Header("Lives")]
     public int lives;
     public float respawnDelay;
@@ -35,6 +38,7 @@ public class PlayerController : Unit
         if (Input.GetMouseButton(0) && fireRateTimer > fireRate && canAttack)
         {
             Projectile newProjectile = Instantiate(primaryProjectile, transform.position, primaryProjectile.transform.rotation);
+            newProjectile.damage = baseDamage;
             newProjectile.tag = "Friendly";
             newProjectile.RotateToTarget(mouseWorldPos);
             fireRateTimer = 0;

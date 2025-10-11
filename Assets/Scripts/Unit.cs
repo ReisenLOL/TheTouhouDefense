@@ -9,5 +9,6 @@ public class Unit : Entity
     public bool canMove = true;
     [Header("CACHE")]
     public Rigidbody2D rb;
+    public AudioSource audioSource;
     
 }

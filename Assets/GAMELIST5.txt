@@ -12,3 +12,35 @@ yeah sure that feedback ain't helpin' them at all.
 
 anyways game:
 rounds of waves, after each round, you can choose an upgrade.
+so you play as (character) defending a place (what place?), from waves of enemies. each kill of an enemy you earn a resource (likely just :Power: because i'm boring), which you can use to upgrade your character (in what way?)
+as for the character, that'd just be dependant on the place you're defending (idea already: each place has their own set of characters, each with their own unique abilities (but what abilities though?))
+as for waves of enemies, just several rounds with their sets of waves. after each round you get the ability to use your :Power: to upgrade yourself (but in what way? items? buffs?)
+for the characters and their unique abilities, i suppose the character should have a primary and two abilities with cooldowns
+places... i suppose the most obvious one is the Hakurei Shrine... could play as reimu or marisa in this case (or whatever other residents that place typically has i suppose)
+but another idea: the SDM. or rather more specifically, the library. could play as any of the sdm crew, defending the library
+anyways today is day 4 of working on the game, i wanna get it playable on day 7 to prove it's free of scope creep
+there's already like 2 touhou fangames i know of that use the library so for the sake of originality i'll go with the shrine for now
+i suppose the last thing left to do is to figure out how the hell upgrading is gonna work
+
+perhaps they'd be random blessings?
+three tiers with different prices on each:
+blessings cost power, but you also gain an increase in basic stats by holding power
+so you can choose between holding onto power, or buying blessings
+and i believe what i'll do is separate the common, uncommon, rare into three tiers instead, and instead of buying a specific blessing you get a random one of that tier 
+TIER 1:
+Attack Potency: Your primary deals 10% more damage. 
+Firing Speed: Increases your primary fire rate by 15%.
+Collection: You gain 10% more Power from defeated enemies.
+Shrine Maiden's Speed: Increases your movement speed by 10%.
+Fantasy Seal Cooldown: Reduces the cooldown of Ability 1 by 1.5 seconds.
+Persuasion Needle Cooldown: Reduces the cooldown of Ability 2 by 1 second.
+
+TIER 2:
+Piercing: Your Homing Ofuda can now pierce through one enemy, hitting another behind it for 50% damage.
+Duplex Attack: You now fire two Homing Ofuda at a time in a narrow spread.
+Sanctuary: For 3 seconds after using an ability, you are invulnerable.
+Persuasion Needle: Pinpoint: The Persuasion Needle is now thinner but deals double damage and stuns non-boss enemies it hits for 0.5 seconds.
+Boundary Ward: The Donation Box slowly regenerates health between waves.
+
+TIER 3:
+Familiar: Yin-Yang Orb: You gain a permanent Yin-Yang Orb that slowly orbits you, damaging and destroying weak enemies it touches.
