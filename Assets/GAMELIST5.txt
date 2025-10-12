@@ -36,8 +36,8 @@ Fantasy Seal Cooldown: Reduces the cooldown of Ability 1 by 1.5 seconds.
 Persuasion Needle Cooldown: Reduces the cooldown of Ability 2 by 1 second.
 
 TIER 2:
-Piercing: Your Homing Ofuda can now pierce through one enemy, hitting another behind it for 50% damage.
-Duplex Attack: You now fire two Homing Ofuda at a time in a narrow spread.
+Piercing: Your Primary can now pierce through one enemy, hitting another behind it for 50% damage.
+Duplex Attack: You now fire two Primary attacks at a time in a narrow spread.
 Sanctuary: For 3 seconds after using an ability, you are invulnerable.
 Persuasion Needle: Pinpoint: The Persuasion Needle is now thinner but deals double damage and stuns non-boss enemies it hits for 0.5 seconds.
 Boundary Ward: The Donation Box slowly regenerates health between waves.

@@ -16,6 +16,7 @@ public class ResourceManager : MonoBehaviour
     }
     #endregion
     public float powerStored;
+    public float powerDivisor;
     public TextMeshProUGUI powerText;
 
     private void Start()

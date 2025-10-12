@@ -45,13 +45,15 @@ public class Enemy : Unit
             Projectile newProjectile = Instantiate(projectile, transform.position, projectile.transform.rotation);
             newProjectile.tag = "Enemy";
             newProjectile.RotateToTarget(target.position);
+            newProjectile.damage = stats.damage;
+            newProjectile.speed = stats.projectileSpeed;
             fireRateTimer = 0;
         }
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = (target.transform.position - transform.position).normalized * speed;
+        rb.linearVelocity = (target.transform.position - transform.position).normalized * stats.speed;
     }
     protected override void OnKillEffects()
     {

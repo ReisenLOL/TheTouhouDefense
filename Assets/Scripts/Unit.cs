@@ -3,7 +3,7 @@ using UnityEngine;
 public class Unit : Entity
 {
 
-    public float speed;
+    public UnitStats stats;
     [Header("Flags")]
     public bool canAttack = true;
     public bool canMove = true;

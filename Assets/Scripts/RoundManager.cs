@@ -35,9 +35,17 @@ public class RoundManager : MonoBehaviour
     }
 
     public RoundData[] rounds;
+    public GameObject showBlessingSelectorButton;
+
+    private void Start()
+    {
+        StartCoroutine(SpawnRound(rounds[currentRound]));
+    }
+
     [ContextMenu("Spawn Round")]
     public void SpawnNextRound()
     {
+        showBlessingSelectorButton.SetActive(false);
         StartCoroutine(SpawnRound(rounds[currentRound]));
     }
     IEnumerator SpawnRound(RoundData round)
@@ -60,6 +68,13 @@ public class RoundManager : MonoBehaviour
             currentWave++;
         }
         currentRound++;
+        EndOfRound();
         yield break;
-    } 
+    }
+
+    public void EndOfRound()
+    {
+        BlessingSelector.instance.RefreshList(true);
+        showBlessingSelectorButton.SetActive(true);
+    }
 }

@@ -3,8 +3,11 @@ using UnityEngine;
 public class FantasySeal : Ability
 {
     public Transform[] bulletSpawnPoints;
-    public Projectile projectile;
+    public HomingProjectile projectile;
+    [Header("Projectile Stats")]
     public float damageModifier;
+    public float projectileSpeed;
+    public float homingRadius;
     
     protected override void AbilityEffects()
     {
@@ -15,9 +18,12 @@ public class FantasySeal : Ability
     }
     private void FireProjectile(Transform spawnPosition)
     {
-        Projectile spawnedAttack = Instantiate(projectile, transform.position, projectile.transform.rotation);
+        HomingProjectile spawnedAttack = Instantiate(projectile, transform.position, projectile.transform.rotation);
+        spawnedAttack.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
         spawnedAttack.RotateToTarget(spawnPosition.position);
         spawnedAttack.damage = thisPlayer.baseDamage * damageModifier;
+        spawnedAttack.speed =  projectileSpeed;
+        spawnedAttack.homingRadius = homingRadius;
         spawnedAttack.tag = "Friendly";
     }
 }
