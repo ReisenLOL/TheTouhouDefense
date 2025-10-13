@@ -31,17 +31,20 @@ and i believe what i'll do is separate the common, uncommon, rare into three tie
 TIER 1:
 Attack Potency: Your primary deals 10% more damage. x
 Firing Speed: Increases your primary fire rate by 15%. x
-Collection: You gain 10% more Power from defeated enemies.
-Swiftness: Increases your movement speed by 10%.
-Conjuration: Reduces the cooldown of Ability 1 by 1.5 seconds.
-Incantation: Reduces the cooldown of Ability 2 by 1 second.
+Collection: You gain 10% more Power from defeated enemies. x
+Swiftness: Increases your movement speed by 10%. x
+Conjuration: Reduces the cooldown of Ability 1 by 1.5 seconds. x
+Incantation: Reduces the cooldown of Ability 2 by 1 second. x
+Defense blessing
+Healing blessing
+Max health blessing
 
 TIER 2:
 Piercing: Your Primary can now pierce through one enemy, hitting another behind it for 50% damage.
 Duplex Attack: You now fire two Primary attacks at a time in a narrow spread.
 Sanctuary: For 3 seconds after using an ability, you are invulnerable.
 Persuasion Needle: Pinpoint: The Persuasion Needle is now thinner but deals double damage and stuns non-boss enemies it hits for 0.5 seconds.
-Boundary Ward: The Donation Box slowly regenerates health between waves.
+Boundary Ward: The Donation Box slowly regenerates health during waves.
 Warding Talisman: Enemies closer to you take bonus damage.
 
 TIER 3:

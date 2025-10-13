@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class CentralBuilding : Entity
@@ -7,6 +8,13 @@ public class CentralBuilding : Entity
     public float respawnTimer;
     public float endOfWaveHealing;
     public float endOfRoundHealing;
+    public Transform healthBar;
+    public TextMeshProUGUI healthBarText;
+
+    private void Start()
+    {
+        UpdateHealthBar();
+    }
 
     private void Update()
     {
@@ -20,7 +28,18 @@ public class CentralBuilding : Entity
                 respawnTimer = 0;
                 player.transform.position = transform.position;
                 player.health = player.maxHealth;
+                player.UpdateHealthBar();
             }
         }
+    }
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        UpdateHealthBar();
+    }
+    public void UpdateHealthBar()
+    {
+        healthBar.localScale = new Vector2(health / maxHealth, 1);
+        healthBarText.text = $"{health}/{maxHealth}"; //neat!
     }
 }

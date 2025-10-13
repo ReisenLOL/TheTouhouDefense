@@ -10,7 +10,7 @@ public class Enemy : Unit
     protected float fireRateTimer;
     public float powerDropped;
 
-    private void Start()
+    protected virtual void Start()
     {
         player = FindFirstObjectByType<PlayerController>();
         centralBuilding = FindFirstObjectByType<CentralBuilding>();
@@ -25,7 +25,7 @@ public class Enemy : Unit
     protected virtual void Update()
     {
         //this will be replaced for navmeshes later
-        if (player.gameObject.activeSelf && Vector3.Distance(player.transform.position, transform.position) <
+        if (player && player.gameObject.activeSelf && Vector3.Distance(player.transform.position, transform.position) <
             Vector3.Distance(centralBuilding.transform.position, transform.position))
         {
             target = player.transform;

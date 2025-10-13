@@ -8,10 +8,13 @@ public class PlayerController : Unit
     [Header("Abilities")] 
     public Ability primaryAttack;
     public Ability primaryAttackInstance;
+    public AbilityIcon primaryAttackIcon;
     public Ability ability1;
     public Ability ability1Instance;
+    public AbilityIcon ability1Icon;
     public Ability ability2;
     public Ability ability2Instance;
+    public AbilityIcon ability2Icon;
     [Header("Stats")] 
     public float baseDamage;
     public float fireRate;
@@ -40,21 +43,15 @@ public class PlayerController : Unit
     public AbilityIcon templateIcon;
     public Transform iconGrid;
 
-    private void Start()
+    private void Awake()
     {
         primaryAttackInstance = Instantiate(primaryAttack, transform);
         primaryAttackInstance.baseCooldownLength = fireRate;
-        AbilityIcon newPrimaryAttackIcon = Instantiate(templateIcon, iconGrid);
-        newPrimaryAttackIcon.targetAbility = primaryAttackInstance;
-        newPrimaryAttackIcon.gameObject.SetActive(true);
+        primaryAttackIcon.targetAbility = primaryAttackInstance;
         ability1Instance = Instantiate(ability1, transform);
-        AbilityIcon ability1Icon = Instantiate(templateIcon, iconGrid);
         ability1Icon.targetAbility = ability1Instance;
-        ability1Icon.gameObject.SetActive(true);
         ability2Instance = Instantiate(ability2, transform);
-        AbilityIcon ability2Icon = Instantiate(templateIcon, iconGrid);
         ability2Icon.targetAbility = ability2Instance;
-        ability2Icon.gameObject.SetActive(true);
     }
     void Update()
     {

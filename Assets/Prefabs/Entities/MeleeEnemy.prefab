@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 787230966295648905}
   - component: {fileID: 2476551995855838117}
   - component: {fileID: 5816097341918350394}
-  - component: {fileID: 9042016902883514062}
+  - component: {fileID: -5900236764835328117}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0.5424528, b: 0.5424528, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 0.6606763, b: 0.56078434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,10 +124,10 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.21133333}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9042016902883514062
+--- !u!114 &-5900236764835328117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,17 +172,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2553751640902109432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad68865860dfa1369424c3183f6507e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ecabee040a30b518be4cf8062f87da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  maxHealth: 20
+  health: 25
+  maxHealth: 25
   defense: 0
   invulnerable: 0
-  stats: {fileID: 11400000, guid: 79cf4bf1d6212728099ad3bf42bc4370, type: 2}
+  stats: {fileID: 11400000, guid: ae8c8967d7756dbdd9378013ce8e7736, type: 2}
   canAttack: 1
   canMove: 1
   rb: {fileID: 5816097341918350394}
   audioSource: {fileID: 0}
-  projectile: {fileID: 725849822225281698, guid: 96f515c39adb5d048b713da953951ddb, type: 3}
+  projectile: {fileID: 0}
   powerDropped: 1

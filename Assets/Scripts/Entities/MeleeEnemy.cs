@@ -4,6 +4,7 @@ using UnityEngine;
 public class MeleeEnemy : Enemy
 {
     private Entity adjacentEntity;
+    private float attackTime;
     protected override void Update()
     {
         if (player.gameObject.activeSelf && Vector3.Distance(player.transform.position, transform.position) <
@@ -15,14 +16,13 @@ public class MeleeEnemy : Enemy
         {
             target = centralBuilding.transform;
         }
-        HandleAttack();
     }
 
     protected override void HandleAttack()
     {
-        fireRateTimer += Time.deltaTime;
-        if (fireRateTimer > stats.fireRate && adjacentEntity)
+        if (Time.time >= attackTime && adjacentEntity)
         {
+            attackTime = Time.time + stats.fireRate; //interesting!
             adjacentEntity.TakeDamage(stats.damage);
             fireRateTimer = 0;
         }
@@ -30,11 +30,24 @@ public class MeleeEnemy : Enemy
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag(tag))
+        if (!other.gameObject.CompareTag(tag))
         {
             if (other.gameObject.TryGetComponent(out Entity isEntity))
             {
                 adjacentEntity = isEntity;
+                HandleAttack();
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (!other.gameObject.CompareTag(tag))
+        {
+            if (other.gameObject.TryGetComponent(out Entity isEntity))
+            {
+                adjacentEntity = isEntity;
+                HandleAttack();
             }
         }
     }
