@@ -31,9 +31,10 @@ public class ResourceManager : MonoBehaviour
     }
     public bool RemovePower(float power)
     {
-        if (powerStored > power)
+        if (powerStored >= power)
         {
             powerStored -= power;
+            UpdatePowerUI();
             return true;
         }
         return false;
@@ -41,7 +42,7 @@ public class ResourceManager : MonoBehaviour
 
     public void UpdatePowerUI()
     {
-        powerText.text = "Power: " + powerStored;
+        powerText.text = "Power: " + MathF.Floor(powerStored);
     }
 }
 

@@ -5,6 +5,8 @@ public class CentralBuilding : Entity
 {
     public PlayerController player;
     public float respawnTimer;
+    public float endOfWaveHealing;
+    public float endOfRoundHealing;
 
     private void Update()
     {

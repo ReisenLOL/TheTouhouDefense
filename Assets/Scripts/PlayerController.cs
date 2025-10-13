@@ -1,52 +1,81 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : Unit
 {
-    [Header("Primary Attack")]
-    public Projectile primaryProjectile;
-    public float fireRate;
-    private float fireRateTimer;
-
     [Header("Abilities")] 
+    public Ability primaryAttack;
+    public Ability primaryAttackInstance;
     public Ability ability1;
-    private Ability ability1Instance;
+    public Ability ability1Instance;
     public Ability ability2;
-    private Ability ability2Instance;
+    public Ability ability2Instance;
     [Header("Stats")] 
     public float baseDamage;
+    public float fireRate;
     public float speed;
+    [Header("Calculated Stats")]
+    public float calculatedDamage;
+    public float calculatedAttackSpeed;
+    public float calculatedSpeed;
     [Header("Modifiers")]
     public float damageModifier = 1f;
     public float attackSpeedModifier = 1f;
     public float speedModifier = 1f;
     public float collectionModifier = 1f;
-    public float ability1CooldownModifier;
-    public float ability2CooldownModifier;
     [Header("Lives")]
     public int lives;
     public float respawnDelay;
     public bool isRespawning;
     [Header("CACHE")]
     public List<Blessing> equippedBlessings = new();
-    public float calculatedDamage;
     private Vector2 moveDirection;
     public Camera cam;
-    private Vector3 mouseWorldPos;
+    public Vector3 mouseWorldPos;
     public CentralBuilding centralBuilding;
+    public Transform healthBar;
+    public TextMeshProUGUI healthBarText;
+    public AbilityIcon templateIcon;
+    public Transform iconGrid;
 
     private void Start()
     {
+        primaryAttackInstance = Instantiate(primaryAttack, transform);
+        primaryAttackInstance.baseCooldownLength = fireRate;
+        AbilityIcon newPrimaryAttackIcon = Instantiate(templateIcon, iconGrid);
+        newPrimaryAttackIcon.targetAbility = primaryAttackInstance;
+        newPrimaryAttackIcon.gameObject.SetActive(true);
         ability1Instance = Instantiate(ability1, transform);
+        AbilityIcon ability1Icon = Instantiate(templateIcon, iconGrid);
+        ability1Icon.targetAbility = ability1Instance;
+        ability1Icon.gameObject.SetActive(true);
         ability2Instance = Instantiate(ability2, transform);
+        AbilityIcon ability2Icon = Instantiate(templateIcon, iconGrid);
+        ability2Icon.targetAbility = ability2Instance;
+        ability2Icon.gameObject.SetActive(true);
     }
     void Update()
     {
-        calculatedDamage = baseDamage * damageModifier * 1f + ResourceManager.instance.powerStored/ResourceManager.instance.powerDivisor;
+        calculatedDamage = baseDamage * damageModifier * (1f + ResourceManager.instance.powerStored/ResourceManager.instance.powerDivisor);
+        calculatedAttackSpeed = fireRate * attackSpeedModifier * (1f - ResourceManager.instance.powerStored / ResourceManager.instance.powerDivisor);
+        primaryAttackInstance.calculatedCooldown = calculatedAttackSpeed;
+        calculatedSpeed = speed * speedModifier;
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         mouseWorldPos =  cam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0,cam.nearClipPlane));
         HandlePrimaryAttack();
+    }
+
+    public void UpdateHealthBar()
+    {
+        healthBar.localScale = new Vector2(health / maxHealth, 1);
+        healthBarText.text = $"{health}/{maxHealth}"; //neat!
+    }
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        UpdateHealthBar();
     }
     protected override void OnKillEffects()
     {
@@ -56,14 +85,9 @@ public class PlayerController : Unit
     }
     public void HandlePrimaryAttack()
     {
-        fireRateTimer += Time.deltaTime;
-        if (Input.GetMouseButton(0) && fireRateTimer > fireRate && canAttack)
+        if (Input.GetMouseButton(0) && canAttack)
         {
-            Projectile newProjectile = Instantiate(primaryProjectile, transform.position, primaryProjectile.transform.rotation);
-            newProjectile.damage = calculatedDamage;
-            newProjectile.tag = "Friendly";
-            newProjectile.RotateToTarget(mouseWorldPos);
-            fireRateTimer = 0;
+            primaryAttackInstance.ActivateAbility();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -78,7 +102,7 @@ public class PlayerController : Unit
     {
         if (canMove)
         {
-            rb.linearVelocity = moveDirection * speed;
+            rb.linearVelocity = moveDirection * calculatedSpeed;
         }
     }
 }

@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    private Transform target;
-    private CentralBuilding centralBuilding;
-    private PlayerController player;
+    protected Transform target;
+    protected CentralBuilding centralBuilding;
+    protected PlayerController player;
     public Projectile projectile;
-    public float fireRate;
-    private float fireRateTimer;
+    protected float fireRateTimer;
     public float powerDropped;
 
     private void Start()
@@ -23,7 +22,7 @@ public class Enemy : Unit
         RoundManager.instance.activeEnemyCount++;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         //this will be replaced for navmeshes later
         if (player.gameObject.activeSelf && Vector3.Distance(player.transform.position, transform.position) <
@@ -37,10 +36,10 @@ public class Enemy : Unit
         }
         HandleAttack();
     }
-    public void HandleAttack()
+    protected virtual void HandleAttack()
     {
         fireRateTimer += Time.deltaTime;
-        if (fireRateTimer > fireRate)
+        if (fireRateTimer > stats.fireRate)
         {
             Projectile newProjectile = Instantiate(projectile, transform.position, projectile.transform.rotation);
             newProjectile.tag = "Enemy";

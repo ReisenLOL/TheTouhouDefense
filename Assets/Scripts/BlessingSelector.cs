@@ -32,28 +32,35 @@ public class BlessingSelector : MonoBehaviour
         player = FindFirstObjectByType<PlayerController>();
     }
 
-    public void ShowBlessingSelector()
+    public void SetBlessingSelectorUI()
     {
-        blessingSelectorUI.gameObject.SetActive(true);
+        blessingSelectorUI.gameObject.SetActive(!blessingSelectorUI.activeSelf);
     }
 
     private void SelectBlessing(Blessing selectedBlessing)
     {
-        if (player.equippedBlessings.Contains(selectedBlessing))
+        if (!ResourceManager.instance.RemovePower(selectedBlessing.cost))
         {
-            foreach (Blessing foundBlessing in blessingsList)
+            return;
+        }
+
+        bool playerHasBlessing = false;
+        foreach (Blessing foundBlessing in player.equippedBlessings)
+        {
+            if (foundBlessing.blessingID == selectedBlessing.blessingID)
             {
-                if (foundBlessing == selectedBlessing)
-                {
-                    foundBlessing.ApplyBlessing();
-                    break;
-                }
+                foundBlessing.stackAmount++;
+                foundBlessing.ApplyBlessing();
+                playerHasBlessing = true;
+                break;
             }
         }
-        else
+        if (!playerHasBlessing)
         {
             Blessing newBlessing = Instantiate(selectedBlessing, player.transform);
             player.equippedBlessings.Add(newBlessing);
+            newBlessing.player = player;
+            newBlessing.ApplyBlessing();
         }
     }
 

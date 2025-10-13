@@ -25,15 +25,16 @@ i suppose the last thing left to do is to figure out how the hell upgrading is g
 perhaps they'd be random blessings?
 three tiers with different prices on each:
 blessings cost power, but you also gain an increase in basic stats by holding power
+power is more general, upgrades every stat, but you can choose to focus on one stat more with a blessing.
 so you can choose between holding onto power, or buying blessings
 and i believe what i'll do is separate the common, uncommon, rare into three tiers instead, and instead of buying a specific blessing you get a random one of that tier 
 TIER 1:
-Attack Potency: Your primary deals 10% more damage. 
-Firing Speed: Increases your primary fire rate by 15%.
+Attack Potency: Your primary deals 10% more damage. x
+Firing Speed: Increases your primary fire rate by 15%. x
 Collection: You gain 10% more Power from defeated enemies.
-Shrine Maiden's Speed: Increases your movement speed by 10%.
-Fantasy Seal Cooldown: Reduces the cooldown of Ability 1 by 1.5 seconds.
-Persuasion Needle Cooldown: Reduces the cooldown of Ability 2 by 1 second.
+Swiftness: Increases your movement speed by 10%.
+Conjuration: Reduces the cooldown of Ability 1 by 1.5 seconds.
+Incantation: Reduces the cooldown of Ability 2 by 1 second.
 
 TIER 2:
 Piercing: Your Primary can now pierce through one enemy, hitting another behind it for 50% damage.
@@ -41,6 +42,8 @@ Duplex Attack: You now fire two Primary attacks at a time in a narrow spread.
 Sanctuary: For 3 seconds after using an ability, you are invulnerable.
 Persuasion Needle: Pinpoint: The Persuasion Needle is now thinner but deals double damage and stuns non-boss enemies it hits for 0.5 seconds.
 Boundary Ward: The Donation Box slowly regenerates health between waves.
+Warding Talisman: Enemies closer to you take bonus damage.
 
 TIER 3:
 Familiar: Yin-Yang Orb: You gain a permanent Yin-Yang Orb that slowly orbits you, damaging and destroying weak enemies it touches.
+Piercing: Replace your homing amulets for piercing needles. ???? wait no that'd be like, limited to one character, reimu. not good?

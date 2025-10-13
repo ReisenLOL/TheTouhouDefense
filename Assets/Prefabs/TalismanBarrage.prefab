@@ -71,9 +71,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8653016371598205939}
-  - component: {fileID: 2514694185400550170}
+  - component: {fileID: -3369349930711744958}
   m_Layer: 0
-  m_Name: FantasySeal
+  m_Name: TalismanBarrage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ Transform:
   - {fileID: 2781857783599926051}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2514694185400550170
+--- !u!114 &-3369349930711744958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,30 +111,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2021212883690047615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f029669551d6c3473bca6dee9bda98a9, type: 3}
+  m_Script: {fileID: 11500000, guid: e40d7ec2d4b862a0b9592160e9b4cfd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityID: Fantasy Seal
+  abilityID: Talisman Barrage
   onCooldown: 0
-  baseCooldownLength: 60
+  baseCooldownLength: 0
   calculatedCooldown: 0
   currentCooldownTime: 0
+  isPrimaryAttack: 1
   abilitySound: {fileID: 0}
   abilityVolume: 0
   thisPlayer: {fileID: 0}
-  bulletSpawnPoints:
-  - {fileID: 2752347182044655637}
-  - {fileID: 5084284612867290567}
-  - {fileID: 4208996712924019014}
-  - {fileID: 2218490950898161610}
-  - {fileID: 736588159791037884}
-  - {fileID: 4674557770117252081}
-  - {fileID: 1431546783319932174}
-  - {fileID: 2781857783599926051}
-  projectile: {fileID: -3456087650754823086, guid: 6d8bac4f9b5c104b2a37e171dfa68786, type: 3}
-  damageModifier: 2
-  projectileSpeed: 8
-  homingRadius: 25
+  projectile: {fileID: 725849822225281698, guid: 53e450ea3ee9d5b4abc6a0b4e91ee54e, type: 3}
 --- !u!1 &2116228061697460342
 GameObject:
   m_ObjectHideFlags: 0

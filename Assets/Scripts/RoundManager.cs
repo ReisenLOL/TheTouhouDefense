@@ -33,9 +33,9 @@ public class RoundManager : MonoBehaviour
         public Enemy enemyToSpawn;
         public int amountToSpawn;
     }
-
     public RoundData[] rounds;
-    public GameObject showBlessingSelectorButton;
+    public GameObject[] EndOfRoundUI;
+    public CentralBuilding centralBuilding;
 
     private void Start()
     {
@@ -45,7 +45,10 @@ public class RoundManager : MonoBehaviour
     [ContextMenu("Spawn Round")]
     public void SpawnNextRound()
     {
-        showBlessingSelectorButton.SetActive(false);
+        foreach (GameObject endOfRoundRObjects in EndOfRoundUI)
+        {
+            endOfRoundRObjects.SetActive(false);
+        }
         StartCoroutine(SpawnRound(rounds[currentRound]));
     }
     IEnumerator SpawnRound(RoundData round)
@@ -65,6 +68,7 @@ public class RoundManager : MonoBehaviour
             {
                 yield return null;
             }
+            centralBuilding.health += centralBuilding.endOfWaveHealing;
             currentWave++;
         }
         currentRound++;
@@ -75,6 +79,10 @@ public class RoundManager : MonoBehaviour
     public void EndOfRound()
     {
         BlessingSelector.instance.RefreshList(true);
-        showBlessingSelectorButton.SetActive(true);
+        centralBuilding.health += centralBuilding.endOfRoundHealing;
+        foreach (GameObject endOfRoundRObjects in EndOfRoundUI)
+        {
+            endOfRoundRObjects.SetActive(true);
+        }
     }
 }

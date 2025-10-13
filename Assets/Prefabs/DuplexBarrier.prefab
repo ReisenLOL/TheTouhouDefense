@@ -114,14 +114,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 404f1e9f01dff6bf9901b87f58c87c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityID: Duplex Barrier
   onCooldown: 0
-  cooldownLength: 10
+  baseCooldownLength: 60
+  calculatedCooldown: 0
   currentCooldownTime: 0
   abilitySound: {fileID: 0}
   abilityVolume: 0
   thisPlayer: {fileID: 0}
   damageModifier: 2
-  radius: 3
+  radius: 6
   entityLayer:
     serializedVersion: 2
     m_Bits: 64

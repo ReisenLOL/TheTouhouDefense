@@ -6,14 +6,10 @@ public class Blessing : MonoBehaviour
     public float tier;
     public float cost;
     public string blessingID;
-    protected PlayerController player;
+    public PlayerController player;
     public bool canStack;
-    public float stackAmount;
+    public float stackAmount = 1f;
     public float stackLimit;
-    private void Start()
-    {
-        player = GetComponentInParent<PlayerController>();
-    }
 
     public virtual void ApplyBlessing()
     {
