@@ -120,8 +120,8 @@ MonoBehaviour:
   calculatedCooldown: 0
   currentCooldownTime: 0
   isPrimaryAttack: 1
-  abilitySound: {fileID: 0}
-  abilityVolume: 0
+  abilitySound: {fileID: 8300000, guid: 295ecc2ad69f30506a53c79e54b12940, type: 3}
+  abilityVolume: 0.1
   thisPlayer: {fileID: 0}
   projectile: {fileID: 725849822225281698, guid: 53e450ea3ee9d5b4abc6a0b4e91ee54e, type: 3}
 --- !u!1 &2116228061697460342

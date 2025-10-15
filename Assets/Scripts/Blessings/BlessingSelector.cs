@@ -14,6 +14,7 @@ public class BlessingSelector : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
+            return;
         }
         instance = this;
     }
@@ -22,14 +23,22 @@ public class BlessingSelector : MonoBehaviour
     // players get a list of blessings purchasable, can refresh for power. random insertion of each tier. 
     public GameObject blessingSelectorUI;
     public Transform blessingSelectorGrid;
-    public PlayerController player;
-    public float refreshCost;
-    public Button templateButton;
+
+    public float baseRefreshCost;
+    public float currentRefreshCost;
+    public TextMeshProUGUI refreshText;
     public int optionAmount;
+    [Header("CACHE")]
+    public PlayerController player;
+    public BlessingButtonHover templateButton;
+    public BlessingIcon templateIcon;
+    public Transform blessingListUI;
+    public List<BlessingIcon> allIcons = new();
 
     private void Start()
     {
         player = FindFirstObjectByType<PlayerController>();
+        currentRefreshCost = baseRefreshCost;
     }
 
     public void SetBlessingSelectorUI()
@@ -37,7 +46,7 @@ public class BlessingSelector : MonoBehaviour
         blessingSelectorUI.gameObject.SetActive(!blessingSelectorUI.activeSelf);
     }
 
-    private void SelectBlessing(Blessing selectedBlessing)
+    private void SelectBlessing(Blessing selectedBlessing, GameObject buttonSelection = null)
     {
         if (!ResourceManager.instance.RemovePower(selectedBlessing.cost))
         {
@@ -51,6 +60,10 @@ public class BlessingSelector : MonoBehaviour
             {
                 foundBlessing.stackAmount++;
                 foundBlessing.ApplyBlessing();
+                foreach (BlessingIcon blessingIcon in allIcons)
+                {
+                    blessingIcon.RefreshIcon();
+                }
                 playerHasBlessing = true;
                 break;
             }
@@ -61,16 +74,31 @@ public class BlessingSelector : MonoBehaviour
             player.equippedBlessings.Add(newBlessing);
             newBlessing.player = player;
             newBlessing.ApplyBlessing();
+            BlessingIcon newIcon = Instantiate(templateIcon, blessingListUI);
+            newIcon.gameObject.SetActive(true);
+            newIcon.attachedBlessing = newBlessing;
+            newIcon.nameTextPlaceholder.text = selectedBlessing.blessingID;
+            newIcon.amountTextPlaceholder.text = selectedBlessing.stackAmount.ToString();
+            allIcons.Add(newIcon);
+        }
+        if (buttonSelection)
+        {
+            Destroy(buttonSelection);
         }
     }
 
     public void RefreshList(bool firstTime = false)
     {
-        if (!firstTime && !ResourceManager.instance.RemovePower(refreshCost))
+        if (!firstTime && !ResourceManager.instance.RemovePower(currentRefreshCost))
         {
             return;
         }
-
+        refreshText.text = $"Refresh (P: {currentRefreshCost})";
+        currentRefreshCost += currentRefreshCost / 2;
+        foreach (Transform oldButton in blessingSelectorGrid)
+        {
+            Destroy(oldButton.gameObject); 
+        }
         List<Blessing> currentBlessingList = new();
         for (int i = 0; i < optionAmount; i++)
         {
@@ -85,10 +113,11 @@ public class BlessingSelector : MonoBehaviour
                     continue;
                 }
                 currentBlessingList.Add(choice);
-                Button newButton = Instantiate(templateButton, blessingSelectorGrid);
+                BlessingButtonHover newButton = Instantiate(templateButton, blessingSelectorGrid);
                 newButton.gameObject.SetActive(true);
-                newButton.onClick.AddListener(() => SelectBlessing(choice));
-                newButton.GetComponentInChildren<TextMeshProUGUI>().text = choice.blessingID;
+                newButton.attachedBlessing = choice;
+                newButton.GetComponent<Button>().onClick.AddListener(() => SelectBlessing(choice, newButton.gameObject));
+                newButton.GetComponentInChildren<TextMeshProUGUI>().text = $"{choice.blessingID} (P {choice.cost})";
                 break;
             }
         }

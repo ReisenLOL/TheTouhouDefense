@@ -37,6 +37,11 @@ public class CentralBuilding : Entity
         base.TakeDamage(damage);
         UpdateHealthBar();
     }
+    public override void Heal(float healing)
+    {
+        base.Heal(healing);
+        UpdateHealthBar();
+    }
     public void UpdateHealthBar()
     {
         healthBar.localScale = new Vector2(health / maxHealth, 1);

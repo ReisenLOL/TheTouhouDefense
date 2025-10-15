@@ -16,7 +16,6 @@ public class Ability : MonoBehaviour
     
     private void Start()
     {
-        thisPlayer = GetComponentInParent<PlayerController>();
         calculatedCooldown = baseCooldownLength;
     }
 

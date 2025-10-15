@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8653016371598205939}
   - component: {fileID: 8954389751797470790}
+  - component: {fileID: 1050742351332704711}
   m_Layer: 0
   m_Name: DuplexBarrier
   m_TagString: Untagged
@@ -116,18 +117,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityID: Duplex Barrier
   onCooldown: 0
-  baseCooldownLength: 60
+  baseCooldownLength: 45
   calculatedCooldown: 0
   currentCooldownTime: 0
-  abilitySound: {fileID: 0}
-  abilityVolume: 0
+  isPrimaryAttack: 0
+  abilitySound: {fileID: 8300000, guid: 59d4dab3fdde382e482da22ecfbe74fe, type: 3}
+  abilityVolume: 0.4
   thisPlayer: {fileID: 0}
-  damageModifier: 2
+  damageModifier: 4
   radius: 6
   entityLayer:
     serializedVersion: 2
     m_Bits: 64
   visual: {fileID: 1617859712475240212, guid: e6fb43befd46c717db95c8c107d4fbd5, type: 3}
+  impulseSource: {fileID: 1050742351332704711}
+  cameraShakeForce: 5
+--- !u!114 &1050742351332704711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021212883690047615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 3
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &2116228061697460342
 GameObject:
   m_ObjectHideFlags: 0

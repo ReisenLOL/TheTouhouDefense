@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d83073f68879117885ce0cdcfc16887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blessingID: Acceleration
+  blessingDescription: Increases attack speed by 15%.
   tier: 1
   cost: 4
-  blessingID: Acceleration
   player: {fileID: 0}
   canStack: 1
   stackAmount: 1

@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class Blessing : MonoBehaviour
 {
-    public float tier;
-    public float cost;
+    [Header("Identification")]
     public string blessingID;
+    public string blessingDescription;
+    public float tier;
+    [Header("Stats")]
+    public float cost;
     public PlayerController player;
     public bool canStack;
     public float stackAmount = 1f;

@@ -116,11 +116,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityID: Fantasy Seal
   onCooldown: 0
-  baseCooldownLength: 60
+  baseCooldownLength: 30
   calculatedCooldown: 0
   currentCooldownTime: 0
-  abilitySound: {fileID: 0}
-  abilityVolume: 0
+  isPrimaryAttack: 0
+  abilitySound: {fileID: 8300000, guid: 462d7deb47d37c34abb7fc7f43677072, type: 3}
+  abilityVolume: 0.4
   thisPlayer: {fileID: 0}
   bulletSpawnPoints:
   - {fileID: 2752347182044655637}
@@ -132,7 +133,7 @@ MonoBehaviour:
   - {fileID: 1431546783319932174}
   - {fileID: 2781857783599926051}
   projectile: {fileID: -3456087650754823086, guid: 6d8bac4f9b5c104b2a37e171dfa68786, type: 3}
-  damageModifier: 2
+  damageModifier: 3
   projectileSpeed: 8
   homingRadius: 25
 --- !u!1 &2116228061697460342

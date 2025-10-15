@@ -15,20 +15,13 @@ public class RoundManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
+            return;
         }
-
         instance = this;
     }
 
     #endregion
-
-    public int activeEnemyCount;
-    public Transform[] spawnPoints;
-    public Transform enemiesFolder;
-    public float timeBetweenEnemySpawns;
-    public float waveStartDelay;
-    public int currentRound;
-
+    
     [System.Serializable]
     public class RoundData
     {
@@ -40,14 +33,27 @@ public class RoundManager : MonoBehaviour
     {
         public Enemy[] enemiesToSpawn;
         public int amountToSpawn;
+        public int enemiesPerBurst = 1;
     }
-
+    [Header("Rounds")]
     public RoundData[] rounds;
+    public int currentRound;
+    public float timeBetweenEnemySpawns;
+    public float waveStartDelay;
+    public int activeEnemyCount;
+    public Transform[] spawnPoints;
+    [Header("UI")]
     public GameObject[] endOfRoundUI;
-    public CentralBuilding centralBuilding;
-    public TextMeshProUGUI waveText;
     public TextMeshProUGUI roundText;
+    public TextMeshProUGUI waveText;
     public float fadeDuration;
+    [Header("Audio")]
+    public AudioClip waveStartSFX;
+    public float waveStartVolume;
+    [Header("CACHE")]
+    public PlayerController player;
+    public CentralBuilding centralBuilding;
+    public Transform enemiesFolder;
 
     private void Start()
     {
@@ -61,7 +67,7 @@ public class RoundManager : MonoBehaviour
         {
             endOfRoundRObjects.SetActive(false);
         }
-
+        player.audioSource.PlayOneShot(waveStartSFX, waveStartVolume);
         StartCoroutine(SpawnRound(rounds[currentRound]));
         roundText.text = $"Round {currentRound+1}";
         StartCoroutine(FadeText(roundText));
@@ -77,10 +83,16 @@ public class RoundManager : MonoBehaviour
             int currentEnemyNumber = 0;
             while (currentEnemyNumber < round.waves[currentWave].amountToSpawn)
             {
-                int randomEnemy = Random.Range(0, round.waves[currentWave].enemiesToSpawn.Length);
-                Enemy newEnemy = Instantiate(round.waves[currentWave].enemiesToSpawn[randomEnemy], enemiesFolder);
-                newEnemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
-                currentEnemyNumber++;
+                for (int i = 0;
+                     i < round.waves[currentWave].enemiesPerBurst &&
+                     currentEnemyNumber < round.waves[currentWave].amountToSpawn;
+                     i++)
+                {
+                    int randomEnemy = Random.Range(0, round.waves[currentWave].enemiesToSpawn.Length);
+                    Enemy newEnemy = Instantiate(round.waves[currentWave].enemiesToSpawn[randomEnemy], enemiesFolder);
+                    newEnemy.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+                    currentEnemyNumber++;
+                }
                 yield return new WaitForSeconds(timeBetweenEnemySpawns);
             }
 
@@ -88,10 +100,11 @@ public class RoundManager : MonoBehaviour
             {
                 yield return null;
             }
-            centralBuilding.health += centralBuilding.endOfWaveHealing;
+            centralBuilding.Heal(centralBuilding.endOfWaveHealing);
             currentWave++;
             if (currentWave < round.waves.Length)
             {
+                player.audioSource.PlayOneShot(waveStartSFX, waveStartVolume);
                 waveText.text = $"Wave {currentWave+1}";
                 StartCoroutine(FadeText(waveText));
             }
@@ -105,7 +118,7 @@ public class RoundManager : MonoBehaviour
     public void EndOfRound()
     {
         BlessingSelector.instance.RefreshList(true);
-        centralBuilding.health += centralBuilding.endOfRoundHealing;
+        centralBuilding.Heal(centralBuilding.endOfRoundHealing);
         roundText.text = $"End of Round {currentRound}";
         StartCoroutine(FadeText(roundText));
         foreach (GameObject endOfRoundRObjects in endOfRoundUI)

@@ -11,6 +11,7 @@ public class ResourceManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
+            return;
         }
         instance = this;
     }
@@ -42,7 +43,7 @@ public class ResourceManager : MonoBehaviour
 
     public void UpdatePowerUI()
     {
-        powerText.text = "Power: " + MathF.Floor(powerStored);
+        powerText.text = $"Power: {MathF.Floor(powerStored)}\n(Bonus from power: +{Math.Round(((powerStored/powerDivisor)*100)*100)/100}% Damage, +{Math.Round((((powerStored/powerDivisor)/2)*100)*100)/100}% Attack Speed)";
     }
 }
 

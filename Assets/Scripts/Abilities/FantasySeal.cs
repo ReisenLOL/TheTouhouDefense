@@ -21,7 +21,7 @@ public class FantasySeal : Ability
         HomingProjectile spawnedAttack = Instantiate(projectile, transform.position, projectile.transform.rotation);
         spawnedAttack.GetComponent<SpriteRenderer>().color = Random.ColorHSV();
         spawnedAttack.RotateToTarget(spawnPosition.position);
-        spawnedAttack.damage = thisPlayer.baseDamage * damageModifier;
+        spawnedAttack.damage = thisPlayer.calculatedDamage * damageModifier;
         spawnedAttack.speed =  projectileSpeed;
         spawnedAttack.homingRadius = homingRadius;
         spawnedAttack.tag = "Friendly";

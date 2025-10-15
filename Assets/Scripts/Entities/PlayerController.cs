@@ -32,6 +32,10 @@ public class PlayerController : Unit
     public int lives;
     public float respawnDelay;
     public bool isRespawning;
+    [Header("Healing")] 
+    public float healingAmount;
+    public float healingTime;
+    private float currentHealingTime;
     [Header("CACHE")]
     public List<Blessing> equippedBlessings = new();
     private Vector2 moveDirection;
@@ -47,21 +51,22 @@ public class PlayerController : Unit
     {
         primaryAttackInstance = Instantiate(primaryAttack, transform);
         primaryAttackInstance.baseCooldownLength = fireRate;
+        primaryAttackInstance.thisPlayer = this;
         primaryAttackIcon.targetAbility = primaryAttackInstance;
         ability1Instance = Instantiate(ability1, transform);
+        ability1Instance.thisPlayer = this;
         ability1Icon.targetAbility = ability1Instance;
         ability2Instance = Instantiate(ability2, transform);
+        ability2Instance.thisPlayer = this;
         ability2Icon.targetAbility = ability2Instance;
     }
     void Update()
     {
-        calculatedDamage = baseDamage * damageModifier * (1f + ResourceManager.instance.powerStored/ResourceManager.instance.powerDivisor);
-        calculatedAttackSpeed = fireRate * attackSpeedModifier * (1f - ResourceManager.instance.powerStored / ResourceManager.instance.powerDivisor);
-        primaryAttackInstance.calculatedCooldown = calculatedAttackSpeed;
-        calculatedSpeed = speed * speedModifier;
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         mouseWorldPos =  cam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0,cam.nearClipPlane));
+        CalculateStats();
         HandlePrimaryAttack();
+        HandleHealing();
     }
 
     public void UpdateHealthBar()
@@ -74,13 +79,35 @@ public class PlayerController : Unit
         base.TakeDamage(damage);
         UpdateHealthBar();
     }
+    public override void Heal(float healing)
+    {
+        base.Heal(healing);
+        UpdateHealthBar();
+    }
     protected override void OnKillEffects()
     {
         gameObject.SetActive(false);
         lives--;
         isRespawning = true;
     }
-    public void HandlePrimaryAttack()
+
+    private void CalculateStats()
+    {
+        calculatedDamage = baseDamage * damageModifier * (1f + ResourceManager.instance.powerStored/ResourceManager.instance.powerDivisor);
+        calculatedAttackSpeed = fireRate * attackSpeedModifier * (1f - ((ResourceManager.instance.powerStored / ResourceManager.instance.powerDivisor)/2));
+        primaryAttackInstance.calculatedCooldown = calculatedAttackSpeed;
+        calculatedSpeed = speed * speedModifier;
+    }
+    private void HandleHealing()
+    {
+        currentHealingTime += Time.deltaTime;
+        if (currentHealingTime > healingTime)
+        {
+            currentHealingTime -= healingTime;
+            Heal(healingAmount);
+        }
+    }
+    private void HandlePrimaryAttack()
     {
         if (Input.GetMouseButton(0) && canAttack)
         {

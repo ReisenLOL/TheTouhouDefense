@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff15992d9f9eea0aa11d66ba60f8b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blessingID: Incantation
+  blessingDescription: Decreases Ability 1 cooldown by 10%
   tier: 1
   cost: 10
-  blessingID: Incantation
   player: {fileID: 0}
   canStack: 0
   stackAmount: 1
   stackLimit: 0
   isAbility2: 1
   affectedAbility: {fileID: 0}
-  cooldownChange: 0.05
+  cooldownChange: 0.1

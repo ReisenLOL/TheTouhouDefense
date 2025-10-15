@@ -661,6 +661,7 @@ MonoBehaviour:
   maxHealth: 1000
   defense: 0
   invulnerable: 0
+  onHitDamageNumber: {fileID: 11400000, guid: 142f2bf1956a197fd946240c06576581, type: 2}
   player: {fileID: 0}
   respawnTimer: 0
   endOfWaveHealing: 0
