@@ -18,7 +18,10 @@ public class ResourceManager : MonoBehaviour
     #endregion
     public float powerStored;
     public float powerDivisor;
+    public PlayerController player;
     public TextMeshProUGUI powerText;
+    public TextMeshProUGUI atkText;
+    public TextMeshProUGUI atkSpdText;
 
     private void Start()
     {
@@ -27,7 +30,7 @@ public class ResourceManager : MonoBehaviour
 
     public void AddPower(float power)
     {
-        powerStored += power;
+        powerStored += power * player.collectionModifier;
         UpdatePowerUI();
     }
     public bool RemovePower(float power)
@@ -43,7 +46,9 @@ public class ResourceManager : MonoBehaviour
 
     public void UpdatePowerUI()
     {
-        powerText.text = $"Power: {MathF.Floor(powerStored)}\n(Bonus from power: +{Math.Round(((powerStored/powerDivisor)*100)*100)/100}% Damage, +{Math.Round((((powerStored/powerDivisor)/2)*100)*100)/100}% Attack Speed)";
+        powerText.text = MathF.Floor(powerStored).ToString();
+        atkText.text = $"+ {Math.Round(((powerStored / powerDivisor) * 100) * 100) / 100}%";
+        atkSpdText.text= $"- {Math.Round((((powerStored / powerDivisor) / 2) * 100) * 100) / 100}%";
     }
 }
 

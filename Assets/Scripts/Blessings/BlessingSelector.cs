@@ -20,6 +20,7 @@ public class BlessingSelector : MonoBehaviour
     }
     #endregion
     public List<Blessing> blessingsList = new();
+    public float[] tierChances;
     // players get a list of blessings purchasable, can refresh for power. random insertion of each tier. 
     public GameObject blessingSelectorUI;
     public Transform blessingSelectorGrid;
@@ -34,11 +35,34 @@ public class BlessingSelector : MonoBehaviour
     public BlessingIcon templateIcon;
     public Transform blessingListUI;
     public List<BlessingIcon> allIcons = new();
-
+    public List<Blessing> tier1Blessings = new();
+    public List<Blessing> tier2Blessings = new();
+    public List<Blessing> tier3Blessings = new();
     private void Start()
     {
         player = FindFirstObjectByType<PlayerController>();
         currentRefreshCost = baseRefreshCost;
+        foreach (Blessing blessingFound in blessingsList)
+        {
+            switch (blessingFound.tier)
+            {
+                case 1:
+                {
+                    tier1Blessings.Add(blessingFound);
+                    break;
+                }
+                case 2:
+                {
+                    tier2Blessings.Add(blessingFound);
+                    break;
+                }
+                case 3:
+                {
+                    tier3Blessings.Add(blessingFound);
+                    break;
+                }
+            }
+        }
     }
 
     public void SetBlessingSelectorUI()
@@ -89,25 +113,44 @@ public class BlessingSelector : MonoBehaviour
 
     public void RefreshList(bool firstTime = false)
     {
-        if (!firstTime && !ResourceManager.instance.RemovePower(currentRefreshCost))
+        int newOptionAmount = optionAmount;
+        if (!firstTime)
         {
-            return;
+            if (!ResourceManager.instance.RemovePower(currentRefreshCost))
+            {
+                return;
+            }
+            newOptionAmount = blessingSelectorGrid.childCount;
         }
         refreshText.text = $"Refresh (P: {currentRefreshCost})";
-        currentRefreshCost += currentRefreshCost / 2;
+        currentRefreshCost += MathF.Floor(currentRefreshCost/2);
         foreach (Transform oldButton in blessingSelectorGrid)
         {
             Destroy(oldButton.gameObject); 
         }
         List<Blessing> currentBlessingList = new();
-        for (int i = 0; i < optionAmount; i++)
+        List<Blessing> selectedList;
+        int randomTier = Random.Range(0, 100);
+        if (randomTier > tierChances[2])
+        {
+            selectedList = tier3Blessings;
+        }
+        else if (randomTier > tierChances[1])
+        {
+            selectedList = tier2Blessings;
+        }
+        else 
+        {
+            selectedList = tier1Blessings;
+        }
+        for (int i = 0; i < newOptionAmount; i++)
         {
             int attempts = 50;
             while (attempts > 0)
             {
                 attempts--;
-                int random = Random.Range(0, blessingsList.Count);
-                Blessing choice = blessingsList[random];
+                int random = Random.Range(0, selectedList.Count);
+                Blessing choice = selectedList[random];
                 if (currentBlessingList.Contains(choice))
                 {
                     continue;

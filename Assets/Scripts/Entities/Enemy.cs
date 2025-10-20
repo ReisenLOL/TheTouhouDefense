@@ -8,6 +8,8 @@ public class Enemy : Unit
     protected PlayerController player;
     public Projectile projectile;
     protected float fireRateTimer;
+    public float closestTargetRange;
+    public float maximumTargetRange;
     public float powerDropped;
 
     protected virtual void Start()
@@ -36,6 +38,7 @@ public class Enemy : Unit
         }
         HandleAttack();
     }
+    
     protected virtual void HandleAttack()
     {
         fireRateTimer += Time.deltaTime;
@@ -50,9 +53,21 @@ public class Enemy : Unit
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        rb.linearVelocity = (target.transform.position - transform.position).normalized * stats.speed;
+        float distanceToTarget = Vector3.Distance(target.transform.position, transform.position);
+        if (distanceToTarget < closestTargetRange)
+        {
+            rb.linearVelocity = -(target.transform.position - transform.position).normalized * stats.speed;
+        }
+        else if (distanceToTarget >= closestTargetRange && distanceToTarget <= maximumTargetRange)
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+        else
+        {
+            rb.linearVelocity = (target.transform.position - transform.position).normalized * stats.speed;
+        }
     }
     protected override void OnKillEffects()
     {

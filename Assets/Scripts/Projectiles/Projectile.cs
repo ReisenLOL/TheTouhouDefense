@@ -23,12 +23,16 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector3.right * (speed * Time.deltaTime));
     }
 
+    protected virtual void OnProjectileHit(Entity entityHit)
+    {
+        entityHit.TakeDamage(damage);
+        Destroy(gameObject);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag(tag) && other.TryGetComponent(out Entity isEntity))
         {
-            isEntity.TakeDamage(damage);
-            Destroy(gameObject);
+            OnProjectileHit(isEntity);
         }
     }
 }

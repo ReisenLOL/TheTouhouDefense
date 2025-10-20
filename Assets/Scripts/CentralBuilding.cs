@@ -6,8 +6,13 @@ public class CentralBuilding : Entity
 {
     public PlayerController player;
     public float respawnTimer;
+    
+    [Header("Healing")]
     public float endOfWaveHealing;
     public float endOfRoundHealing;
+    public float passiveHealingAmount;
+    public float passiveHealingTime;
+    private float currentHealingTime;
     public Transform healthBar;
     public TextMeshProUGUI healthBarText;
 
@@ -31,6 +36,7 @@ public class CentralBuilding : Entity
                 player.UpdateHealthBar();
             }
         }
+        HandleHealing();
     }
     public override void TakeDamage(float damage)
     {
@@ -41,6 +47,16 @@ public class CentralBuilding : Entity
     {
         base.Heal(healing);
         UpdateHealthBar();
+    }
+
+    private void HandleHealing()
+    {
+        currentHealingTime += Time.deltaTime;
+        if (currentHealingTime > passiveHealingTime)
+        {
+            currentHealingTime -= passiveHealingTime;
+            Heal(passiveHealingAmount);
+        }
     }
     public void UpdateHealthBar()
     {

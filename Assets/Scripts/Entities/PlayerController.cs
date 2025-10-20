@@ -9,6 +9,9 @@ public class PlayerController : Unit
     public Ability primaryAttack;
     public Ability primaryAttackInstance;
     public AbilityIcon primaryAttackIcon;
+    public Ability secondaryAttack;
+    public Ability secondaryAttackInstance;
+    public AbilityIcon secondaryAttackIcon;
     public Ability ability1;
     public Ability ability1Instance;
     public AbilityIcon ability1Icon;
@@ -44,8 +47,6 @@ public class PlayerController : Unit
     public CentralBuilding centralBuilding;
     public Transform healthBar;
     public TextMeshProUGUI healthBarText;
-    public AbilityIcon templateIcon;
-    public Transform iconGrid;
 
     private void Awake()
     {
@@ -53,6 +54,9 @@ public class PlayerController : Unit
         primaryAttackInstance.baseCooldownLength = fireRate;
         primaryAttackInstance.thisPlayer = this;
         primaryAttackIcon.targetAbility = primaryAttackInstance;
+        secondaryAttackInstance = Instantiate(secondaryAttack, transform);
+        secondaryAttackInstance.thisPlayer = this;
+        secondaryAttackIcon.targetAbility = secondaryAttackInstance;
         ability1Instance = Instantiate(ability1, transform);
         ability1Instance.thisPlayer = this;
         ability1Icon.targetAbility = ability1Instance;
@@ -65,7 +69,7 @@ public class PlayerController : Unit
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         mouseWorldPos =  cam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0,cam.nearClipPlane));
         CalculateStats();
-        HandlePrimaryAttack();
+        HandleAbilities();
         HandleHealing();
     }
 
@@ -93,8 +97,9 @@ public class PlayerController : Unit
 
     private void CalculateStats()
     {
-        calculatedDamage = baseDamage * damageModifier * (1f + ResourceManager.instance.powerStored/ResourceManager.instance.powerDivisor);
-        calculatedAttackSpeed = fireRate * attackSpeedModifier * (1f - ((ResourceManager.instance.powerStored / ResourceManager.instance.powerDivisor)/2));
+        float powerBonus = ResourceManager.instance.powerStored / ResourceManager.instance.powerDivisor;
+        calculatedDamage = baseDamage * damageModifier * (1f + powerBonus);
+        calculatedAttackSpeed = fireRate * attackSpeedModifier / (1f + (powerBonus/2));
         primaryAttackInstance.calculatedCooldown = calculatedAttackSpeed;
         calculatedSpeed = speed * speedModifier;
     }
@@ -107,11 +112,15 @@ public class PlayerController : Unit
             Heal(healingAmount);
         }
     }
-    private void HandlePrimaryAttack()
+    private void HandleAbilities()
     {
         if (Input.GetMouseButton(0) && canAttack)
         {
             primaryAttackInstance.ActivateAbility();
+        }
+        if (Input.GetMouseButton(1) && canAttack)
+        {
+            secondaryAttackInstance.ActivateAbility();
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {

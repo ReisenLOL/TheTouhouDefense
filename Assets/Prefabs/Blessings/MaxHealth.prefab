@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3905539028418550996}
-  - component: {fileID: -8787005303963027537}
+  - component: {fileID: 1998854963552557396}
   m_Layer: 0
-  m_Name: Collection
+  m_Name: MaxHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8787005303963027537
+--- !u!114 &1998854963552557396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7508037277990903491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c70c86a0bd8a39d0a9ba437d7919c0fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 96588938ed187930f9a29e431084c12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: Collection
-  blessingDescription: Increases earned power by 15%
+  blessingID: max health increase
+  blessingDescription: needs a better name
   tier: 1
-  cost: 3
+  cost: 4
   player: {fileID: 0}
-  canStack: 0
+  canStack: 1
   stackAmount: 1
   stackLimit: 0
-  collectionModifierChange: 0.15
+  healthToAdd: 25

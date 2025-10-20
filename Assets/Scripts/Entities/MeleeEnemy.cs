@@ -17,6 +17,10 @@ public class MeleeEnemy : Enemy
             target = centralBuilding.transform;
         }
     }
+    protected override void FixedUpdate()
+    {
+        rb.linearVelocity = (target.transform.position - transform.position).normalized * stats.speed;
+    }
 
     protected override void HandleAttack()
     {

@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityID: Fantasy Seal
   onCooldown: 0
-  baseCooldownLength: 30
+  baseCooldownLength: 25
   calculatedCooldown: 0
   currentCooldownTime: 0
   isPrimaryAttack: 0

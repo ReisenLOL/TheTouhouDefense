@@ -28,6 +28,11 @@ blessings cost power, but you also gain an increase in basic stats by holding po
 power is more general, upgrades every stat, but you can choose to focus on one stat more with a blessing.
 so you can choose between holding onto power, or buying blessings
 and i believe what i'll do is separate the common, uncommon, rare into three tiers instead, and instead of buying a specific blessing you get a random one of that tier 
+i suppose i'll add a secondary attack.
+
+IDEAS:
+the core can receive upgrades aswell.
+
 
 TO DO:
 - make projectiles fade away before destroying
@@ -39,14 +44,15 @@ Collection: You gain 10% more Power from defeated enemies. x
 Swiftness: Increases your movement speed by 10%. x
 Conjuration: Reduces the cooldown of Ability 1 by 1.5 seconds. x
 Incantation: Reduces the cooldown of Ability 2 by 1 second. x
-Defense blessing
-Healing blessing
-Max health blessing
+Defense blessing x
+Healing blessing x
+Max health blessing x
 
 TIER 2:
 Piercing: Your Primary can now pierce through one enemy, hitting another behind it for 50% damage.
 Duplex Attack: You now fire two Primary attacks at a time in a narrow spread.
 Sanctuary: For 3 seconds after using an ability, you are invulnerable. x
+Secondary attack powers up your ability on use.
 Persuasion Needle: Pinpoint: The Persuasion Needle is now thinner but deals double damage and stuns non-boss enemies it hits for 0.5 seconds.
 Boundary Ward: The Central Building deals damage to nearby enemies.
 Self Repair: The Central Building now slowly heals during waves, per second. 

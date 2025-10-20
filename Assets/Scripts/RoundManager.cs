@@ -45,6 +45,7 @@ public class RoundManager : MonoBehaviour
     [Header("UI")]
     public GameObject[] endOfRoundUI;
     public TextMeshProUGUI roundText;
+    public TextMeshProUGUI roundInfoText;
     public TextMeshProUGUI waveText;
     public float fadeDuration;
     [Header("Audio")]
@@ -67,12 +68,14 @@ public class RoundManager : MonoBehaviour
         {
             endOfRoundRObjects.SetActive(false);
         }
+        BlessingSelector.instance.blessingSelectorUI.SetActive(false);
         player.audioSource.PlayOneShot(waveStartSFX, waveStartVolume);
         StartCoroutine(SpawnRound(rounds[currentRound]));
         roundText.text = $"Round {currentRound+1}";
         StartCoroutine(FadeText(roundText));
         waveText.text = $"Wave 1";
         StartCoroutine(FadeText(waveText));
+        roundInfoText.text = $"Round {currentRound + 1}\nWave 1/{rounds[currentRound].waves.Length}";
     }
 
     IEnumerator SpawnRound(RoundData round)
@@ -107,6 +110,7 @@ public class RoundManager : MonoBehaviour
                 player.audioSource.PlayOneShot(waveStartSFX, waveStartVolume);
                 waveText.text = $"Wave {currentWave+1}";
                 StartCoroutine(FadeText(waveText));
+                roundInfoText.text = $"Round {currentRound + 1}\nWave {currentWave+1}/{rounds[currentRound].waves.Length}";
             }
             yield return new WaitForSeconds(waveStartDelay);
         }
