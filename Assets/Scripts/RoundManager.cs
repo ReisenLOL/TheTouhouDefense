@@ -118,7 +118,7 @@ public class RoundManager : MonoBehaviour
         EndOfRound();
         yield break;
     }
-
+    [ContextMenu("End Round")]
     public void EndOfRound()
     {
         BlessingSelector.instance.RefreshList(true);

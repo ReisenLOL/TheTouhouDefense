@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d5289ce6fda6cfaafe66e4ebff9cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: Potency
-  blessingDescription: Increases damage by 10%
+  ID: Potency
+  description: Increases base damage by 10%
   tier: 1
   cost: 4
-  player: {fileID: 0}
   canStack: 1
   stackAmount: 1
   stackLimit: 0
+  player: {fileID: 0}
   attackModifierChange: 0.1

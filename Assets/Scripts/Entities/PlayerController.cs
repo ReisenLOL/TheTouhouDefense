@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerController : Unit
 {
     [Header("Abilities")] 
-    public Ability primaryAttack;
-    public Ability primaryAttackInstance;
+    public ProjectileAbility primaryAttack;
+    public ProjectileAbility primaryAttackInstance;
     public AbilityIcon primaryAttackIcon;
     public Ability secondaryAttack;
     public Ability secondaryAttackInstance;

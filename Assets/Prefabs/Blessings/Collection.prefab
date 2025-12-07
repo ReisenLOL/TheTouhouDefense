@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c70c86a0bd8a39d0a9ba437d7919c0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: Collection
-  blessingDescription: Increases earned power by 15%
+  ID: Collection
+  description: Increases Power gain by 15%
   tier: 1
   cost: 3
-  player: {fileID: 0}
   canStack: 0
   stackAmount: 1
   stackLimit: 0
+  player: {fileID: 0}
   collectionModifierChange: 0.15

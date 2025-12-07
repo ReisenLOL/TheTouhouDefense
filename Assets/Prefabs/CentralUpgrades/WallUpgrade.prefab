@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7508037277990903491
+--- !u!1 &1728570187186151565
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3905539028418550996}
-  - component: {fileID: -2734714561200174465}
+  - component: {fileID: 3933635121433207760}
+  - component: {fileID: -2934700138187316732}
   m_Layer: 0
-  m_Name: Conjuration
+  m_Name: WallUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3905539028418550996
+--- !u!4 &3933635121433207760
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7508037277990903491}
+  m_GameObject: {fileID: 1728570187186151565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,26 +32,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2734714561200174465
+--- !u!114 &-2934700138187316732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7508037277990903491}
+  m_GameObject: {fileID: 1728570187186151565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff15992d9f9eea0aa11d66ba60f8b84, type: 3}
+  m_Script: {fileID: 11500000, guid: 0229cfb8987ae3df2aecbfae824ce620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Conjuration
-  description: Decreases Ability 1 cooldown by 15%
+  ID: Wall
+  description: Wall
   tier: 1
   cost: 10
   canStack: 0
   stackAmount: 1
   stackLimit: 0
-  player: {fileID: 0}
-  isAbility2: 0
-  affectedAbility: {fileID: 0}
-  cooldownChange: 0.15
+  centralBuilding: {fileID: 0}
+  wall: {fileID: 3202198591215946208, guid: 15f36fa115df174b8b4ef4e11419f13b, type: 3}
+  wallInstance: {fileID: 0}
+  healthToAdd: 100

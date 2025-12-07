@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class CentralBuilding : Entity
     private float currentHealingTime;
     public Transform healthBar;
     public TextMeshProUGUI healthBarText;
+    [Header("Upgrades")] 
+    public List<CentralUpgrade> equippedUpgrades;
 
     private void Start()
     {

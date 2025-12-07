@@ -123,7 +123,8 @@ MonoBehaviour:
   abilitySound: {fileID: 8300000, guid: 74c45304c4136af81b548f47bf1cb4a5, type: 3}
   abilityVolume: 0.1
   thisPlayer: {fileID: 0}
-  projectile: {fileID: 3918496216691985317, guid: ce388c6e22599a1e186775ce55eed6a0, type: 3}
+  originalProjectile: {fileID: 3918496216691985317, guid: ce388c6e22599a1e186775ce55eed6a0, type: 3}
+  currentProjectile: {fileID: 3918496216691985317, guid: ce388c6e22599a1e186775ce55eed6a0, type: 3}
   damageMultiplier: 2.5
 --- !u!1 &2116228061697460342
 GameObject:

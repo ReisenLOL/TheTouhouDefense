@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3905539028418550996}
-  - component: {fileID: -2734714561200174465}
+  - component: {fileID: 8328923839906550620}
   m_Layer: 0
-  m_Name: Conjuration
+  m_Name: Duplex Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2734714561200174465
+--- !u!114 &8328923839906550620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,17 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7508037277990903491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cff15992d9f9eea0aa11d66ba60f8b84, type: 3}
+  m_Script: {fileID: 11500000, guid: b2e4f194c98ee093cb2f82acc60dd090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Conjuration
-  description: Decreases Ability 1 cooldown by 15%
-  tier: 1
-  cost: 10
+  ID: Duplex Attack
+  description: Doubles your primary projectile
+  tier: 3
+  cost: 90
   canStack: 0
   stackAmount: 1
-  stackLimit: 0
+  stackLimit: 1
   player: {fileID: 0}
-  isAbility2: 0
-  affectedAbility: {fileID: 0}
-  cooldownChange: 0.15
+  projectileDoubler: {fileID: -8932163915573807969, guid: cab0a811e963f4a469cf347581912646, type: 3}

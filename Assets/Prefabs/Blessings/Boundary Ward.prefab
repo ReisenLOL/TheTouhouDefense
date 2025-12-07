@@ -44,14 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4c8b7c8d49fc86ca5dbbb0cff98585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: Boundary Ward
-  blessingDescription: Enemies close to the central building now take pasively damage.
+  ID: Boundary Ward
+  description: Damages enemies nearby the defense point.
   tier: 2
   cost: 20
-  player: {fileID: 0}
   canStack: 0
   stackAmount: 1
   stackLimit: 0
+  player: {fileID: 0}
   boundaryRange: {fileID: 8026490676628926569, guid: 07ec63595e290b6e4b44366d77cb54a2, type: 3}
   boundaryRangeInstance: {fileID: 0}
   enemiesInRange: []

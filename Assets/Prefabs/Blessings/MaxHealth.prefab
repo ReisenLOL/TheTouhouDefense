@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96588938ed187930f9a29e431084c12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: max health increase
-  blessingDescription: needs a better name
+  ID: Max Health
+  description: needs better name. increases max hp by 25
   tier: 1
   cost: 4
-  player: {fileID: 0}
   canStack: 1
   stackAmount: 1
   stackLimit: 0
+  player: {fileID: 0}
   healthToAdd: 25

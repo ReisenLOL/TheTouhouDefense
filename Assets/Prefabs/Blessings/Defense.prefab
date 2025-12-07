@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5be1dc75a84e580b9a2f46c7497455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: defense
-  blessingDescription: needs a better name
+  ID: Defense
+  description: needs better name
   tier: 1
   cost: 5
-  player: {fileID: 0}
   canStack: 1
   stackAmount: 1
   stackLimit: 0
+  player: {fileID: 0}
   defenseToAdd: 0.5

@@ -32,7 +32,12 @@ i suppose i'll add a secondary attack.
 
 IDEAS:
 the core can receive upgrades aswell.
-
+unsure if core upgrades should also be random, if they should have a different currency, or something else
+core upgrades will not ApplyUpgrade() on instantiation
+core upgrade ideas:
+passive turret
+wall. just a wall that blocks damage
+creates allied units that will attack enemies
 
 TO DO:
 - make projectiles fade away before destroying
@@ -50,7 +55,6 @@ Max health blessing x
 
 TIER 2:
 Piercing: Your Primary can now pierce through one enemy, hitting another behind it for 50% damage.
-Duplex Attack: You now fire two Primary attacks at a time in a narrow spread.
 Sanctuary: For 3 seconds after using an ability, you are invulnerable. x
 Secondary attack powers up your ability on use.
 Persuasion Needle: Pinpoint: The Persuasion Needle is now thinner but deals double damage and stuns non-boss enemies it hits for 0.5 seconds.
@@ -62,5 +66,6 @@ Warding Talisman: Enemies closer to you take bonus damage.
 TIER 3:
 Familiar: Yin-Yang Orb: You gain a permanent Yin-Yang Orb that slowly orbits you, damaging and destroying weak enemies it touches.
 Options: Add another option to the blessing selection.
+Duplex Attack: You now fire two Primary attacks at a time in a narrow spread.
 Power Spending: Ability to spend power to bypass a cooldown;
 Piercing: Replace your homing amulets for piercing needles. ???? wait no that'd be like, limited to one character, reimu. not good?

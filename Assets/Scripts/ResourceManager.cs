@@ -47,8 +47,8 @@ public class ResourceManager : MonoBehaviour
     public void UpdatePowerUI()
     {
         powerText.text = MathF.Floor(powerStored).ToString();
-        atkText.text = $"+ {Math.Round(((powerStored / powerDivisor) * 100) * 100) / 100}%";
-        atkSpdText.text= $"- {Math.Round((((powerStored / powerDivisor) / 2) * 100) * 100) / 100}%";
+        atkText.text = $"+{Math.Round(((powerStored / powerDivisor) * 100) * 100) / 100}%";
+        atkSpdText.text= $"-{Math.Round((((powerStored / powerDivisor) / 2) * 100) * 100) / 100}%";
     }
 }
 

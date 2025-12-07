@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16aae2ef9325de28fa60b263d860a146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: Healing
-  blessingDescription: needs a better name
+  ID: Healing
+  description: needs better name. increases healing amount
   tier: 1
   cost: 6
-  player: {fileID: 0}
   canStack: 1
   stackAmount: 1
   stackLimit: 0
+  player: {fileID: 0}
   healingAmountToAdd: 1

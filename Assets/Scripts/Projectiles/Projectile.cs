@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
         transform.Lookat2D(direction);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         Destroy(gameObject, timeUntilAutoDestroy);
     }

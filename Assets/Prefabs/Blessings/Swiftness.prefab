@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ba9eb0df66f79fbb891000e4cf0f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blessingID: Swiftness
-  blessingDescription: Increases speed by 10%
+  ID: Swiftness
+  description: Increases movement speed by 10%
   tier: 1
   cost: 6
-  player: {fileID: 0}
   canStack: 1
   stackAmount: 1
   stackLimit: 0
+  player: {fileID: 0}
   speedChange: 0.1
